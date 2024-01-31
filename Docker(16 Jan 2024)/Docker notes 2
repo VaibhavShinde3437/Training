@@ -1,0 +1,99 @@
+Dockerfile : it is text file with instructions to create a Docker image.
+when we run a dockerfile a docker image is created and when we run a docker image a docker container is created.
+
+Docker File Best parctices:
+1. Reduce the no of layers(lines):
+	like combine the run instructions where ever possible
+	
+2. Copy only necessary files:
+	only copy the necessary files in the workplace rather than coping all the files which
+	are not necessary. Use COPY instead of ADD for local files
+	
+3. Use a ligth weight base image: 
+	this keep your container size small
+	
+4. Specify the versions:
+	this will resolve the compatibility issues when installing
+	
+5. Create a workplace:
+	create a workplace to organize the related files and resources inside the container
+
+6. Exclude with .dockerignore:
+	to keep the unnecessary files out of the docker container 
+	
+7. Make use of certified images only:
+	this makes the dockerfile efficient
+
+8. use LABEL instruction in dockerfile:
+	to set some metadata in the dockerfile to make it more understandable
+	
+9. EXPOSE only necessary ports
+
+=================================================================================================
+
+Docker Storage: 1. Volumes
+		2. Bind Mount
+		3. Tmpfs Mount
+		
+		
+1.--> Persistent storage location for container. they are completely managed by Docker
+to create a volume : docker volume create {volume_name}
+to see all volumes: docker volume ls
+info about a volume : docker volume inspect {volume_name}
+to remove a volume : docker volume rm {volume_name}
+to remove all the volumes at once: docker volume prune
+
+use a volume with a container:
+A. docker run -it -d --mount source={source},target={target} {img_name}
+B. docker run -it -d --volume {source}:{target} {img_name}
+C. docker run -it -d -v {source}:{target} {img_name}
+
+
+2.--> They are not managed by Docker and are mapped to the host system directory. Meaning any changes made to the volume or the in the host system directory are immediatly reflect on other side
+
+use bind mount with container:
+docker run -it -d --mount type=bind,source={source},target={target} {img_name}
+
+3.--> Data stored using tmfs are temporarily stored and gets erased when the container is stopped	
+
+use tmpfs mount with container :
+A. docker run -it -d --mount type=tmpfs, target={target} {img_name}
+B. docker run -it -d --tmpfs {target} {img_name}
+
+================================================================================================
+
+Storage Drivers:
+responsible for managing the storage backend where container images and container filesystems are stored. 
+
+================================================================================================
+
+Docker Networks:
+It is basically a connection between one or more containers
+
+types : 1. Bridge Network
+	2. Host Network
+	3. Overlay Network
+	4. Macvlan Network
+	5. None Network
+	
+1.--> Containers that are connected by the means of bridge network can communicate with each other
+create: docker network --driver bridge {network_name}
+use with container : docker run -it -d --network bridge {conatiner_id}
+
+2.--> allows a Docker container to share the network namespace with the Docker host i.e., the container will share the IPaddress of the host and dont have one of their own.
+use with container : docker run -it -d --network host {conatiner_id}
+
+3.--> Establish connection between the containers that are running on different servers or host
+
+4.--> A container which has none network as configured, cannot communicate with other service or conatainer as the networking for that container is virtually disabled. It is used to complete isolate a certain conatiner. 
+use with container : docker run -it -d --network none {conatiner_id}
+
+=================================================================================================
+
+Docker Compose:
+It is just a docker service that let's us to launch multiple containers at the same time
+it uses a yaml file for configuration
+
+docker compose up
+
+

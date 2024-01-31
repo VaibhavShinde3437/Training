@@ -1,0 +1,48 @@
+Docker : It is a open source tha helps to develop, build, deploy and execute a software independently. It deos so by creating containers
+
+Container : Container basically works as a packages that bundles a code with environment, runtime libraries, dependencies and all other utils to exceute the code into a single deployable unit. It runs as an isolated process, it has its own file system, network and process space
+
+Docker Environment : 1. Docker Engine
+		     2. Docker Object
+		     3. Docker Registry
+		     4. Docker Compose
+		     5. Docker Swarm
+
+1.--> Handles the creation and management of all the docker processes
+contains 3 major parts Docker CLI, Docker API, Docker Deamon
+
+2.--> It contain Docker images, container, volumes, networks, etc
+
+Docker Image : Are set of instruction to create containers
+
+to run a docker image : docker run -it -d {imageName}(-it : interactive, -d : run in background)
+to go inside a container : docker exec -ti {containername} bash 
+remove a container : docker rm {container_id}
+remove a image: docker rmi {image_id}
+to go inside a container: docker exec -ti {container_id} bash
+how to puul a image: docker pull {image_name}
+to stop a container : docker stop {container_id}
+to see all the available images : docker images
+
+
+
+Docker Object--volumes  : these are storage for conatiners
+
+Docker Object--Network : connection between one or more containers
+
+3.--> it is the place were we can store our docker images
+
+4.--> it is a docker service that enable us launch multiple container at the same time
+
+5.--> it allow us to manage multiple containers
+
+Docker file: these basically are the scripts that you can write and then build into a image, then that image can be run to create container
+
+Docker file instructions:
+FROM
+WORKDIR
+ADD
+COPY
+RUN
+CMD
+LABEL

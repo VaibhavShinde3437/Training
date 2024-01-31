@@ -1,0 +1,25 @@
+Docker Compose:
+It is just a docker service that let's us to launch multiple containers at the same time.
+it uses a yaml file for configuration
+
+commands:
+Start all services: Docker Compose up
+Stop all services: Docker Compose down
+Run Docker Compose file: Docker-compose up -d
+List the entire process: Docker ps
+Use YAML files to configure application services - Docker Compose.yml
+
+
+
+Docker Swarm : it is an orchestration service within Docker that allow us to manage and handle multiple conatiners at the same time. It is also a cluster of multipl conatiners
+
+In Docker swarm one node or server is Manager Node and other are Worker Nodes 
+
+manager node  : Manages the worker nodes, i.e, it defines tasks for every worker node.
+worker nodes : execute the task assigned by the manager node.
+
+(manager_node)creating a new swarm: docker swarm init --advertise-addr {manager_node_ip}
+(worker_node)to join a swarm: we need to execute a token produced by the manager node to join the swarm as worker node
+(worker_node)to leave the swarm : docker swarm leave
+(manager_node)to close a swarm: docker swarm leave --force
+to change the availability : docker node udate --availability {node_id}
